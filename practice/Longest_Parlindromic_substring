@@ -1,0 +1,22 @@
+public class Solution {
+    int min=0,max=0;
+    public String longestPalindrome(String s) {
+        if(s.length()<2) return s;
+        for(int i=0;i<s.length();i++){
+            helper(s,i,i);
+            helper(s,i,i+1);
+        }
+        return s.substring(min,max+1);
+    }
+    //extendPalindrome should be O(N),imagine the worst case i = mid,and the input is "aaaaaaa",left pointer keep moving until -1, right pointer keep move until s.length(),one by one,is linear.the complexity is O(N/2)~O(N).
+    public void helper(String s,int i,int j){
+        while(i>=0&&j<s.length()&&(s.charAt(i)==s.charAt(j))){
+            i--;j++;
+        }
+        if(max-min<j-i-1){
+            min=i+1;
+            max=j-1;
+        }
+    }
+}
+
