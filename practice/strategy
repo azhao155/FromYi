@@ -1,0 +1,4 @@
+In the above UML class diagram, the Context class doesn't implement an algorithm directly. Instead, Context refers to the Strategy interface for performing an algorithm (strategy.algorithm()), which makes Context independent of how an algorithm is implemented. The Strategy1 and Strategy2 classes implement the Strategy interface, that is, implement (encapsulate) an algorithm.
+The UML sequence diagram shows the run-time interactions: The Context object delegates an algorithm to different Strategy objects. First, Context calls algorithm() on a Strategy1 object, which performs the algorithm and returns the result to Context. Thereafter, Context changes its strategy and calls algorithm() on a Strategy2 object, which performs the algorithm and returns the result to Context.
+
+
