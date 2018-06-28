@@ -1,0 +1,29 @@
+class ControlTower {
+	PriorityQueeue<Schedule> schedules;
+	Lane[] lanes;
+	Object signal = new Object();
+	public addSchedule(Schedule s) {
+		schedules.offer(s);
+		signal.notify();
+	}
+	public cancelSchedule(Schedule s) {schedules.remove(s);}
+	public void run() {
+		while (!airPort_shutdown) {
+			Schedule s = schedules.poll(); //bloked if no schedule
+			while (s.time > Now()) {
+				signal.wait(Now() - s.time);
+				if (s.time > schedules.peek().time) {
+					schedules.offer(s);
+					s = schedules.poll();
+				}
+			}
+			Lane lane = getFreeLane();
+			Plane plane = s.plane;
+			plane.moveTo(lane);
+			plane.takeOff();
+			releaseLane(lane);
+		}
+	}	
+	public addSchedule(Schedule s) {schedules.offer(s);}
+	public cancelSchedule(Schedule s) {schedules.removde(s);}
+}
