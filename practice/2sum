@@ -1,0 +1,58 @@
+public static int[] twoSum(int[] nums, int target) { // uses bSearch
+
+    // sort the damn thing first
+    Arrays.sort(nums);
+    System.out.println("Sorted array: " + Arrays.toString(nums));
+
+    // these represent indices
+    int low = 0;
+    int high = nums.length - 1;
+    int c = 0; // b-search counter
+    
+    for (int i = 0; i < nums.length; i++) {
+        int s = target - nums[i];
+
+        int index = bSearch(nums, s);
+        c++;
+
+        if (index > 0) {
+            System.out.println("Number of b-searches performed: " + c);
+            System.out.println(Arrays.toString(new int[] { i, index }));
+            return new int[] { i, index };
+        }
+
+    }
+    
+    System.out.println("NOT FOUND.");
+    return new int[] { -1, -1 };
+}
+
+public static int bSearch(int[] numbers, int val) {
+    // these represent indices
+    int low = 0;
+    int high = numbers.length - 1;
+
+    while (low <= high) {
+
+        int mid = ((high + low) / 2);
+
+        // System.out.println("Mid = " + mid + "\nLow = " + low + "\nHigh =
+        // " + high + "\n");
+
+        if (numbers[mid] == val) {
+            // System.out.println("Index of " + val + " is: " + mid);
+            return mid;
+        }
+
+        else if (numbers[mid] > val) {
+            high = mid - 1;
+        }
+
+        else if (numbers[mid] < val) {
+            low = mid + 1;
+        }
+
+    }
+
+    return -1;
+}
