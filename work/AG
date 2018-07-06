@@ -1,0 +1,7 @@
+1. Url Path Based Routing: Based on the url prefix, route to different backend
+2. Redirect : global port redirect, from http to https 
+3. MutiSite Hosting: host more than one pool, based on the host name 
+4. Session affinity: keep the same user on the same server
+5. SSl termination: offloading encrption/decrption for backend 
+6. Web Application Firewall
+7. Health Probe, logging, Monitoring
