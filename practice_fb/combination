@@ -1,0 +1,68 @@
+public class Solution {
+/**
+* @param n: Given the range of numbers
+* @param k: Given the numbers of combinations
+* @return: All the combinations of k numbers out of 1..n
+*/
+public List<List<Integer>> combine(int n, int k) {
+// write your code here
+List<List<Integer>> rst = new ArrayList<List<Integer>>()
+;
+dfs(rst, new ArrayList<Integer>(), n, k, 0);
+return rst;
+}
+private void dfs(List<List<Integer>> rst, List<Integer> list
+, int n, int k, int prev){
+if(list.size() == k) {
+rst.add(new ArrayList<Integer>(list));
+//list.remove(list.size() - 1);
+}
+for(int i = prev + 1; i <= n; i++){
+if(list.contains(i)) continue;
+list.add(i);
+dfs(rst, list, n, k, i);
+list.remove(list.size() - 1);
+}
+}
+}
+
+
+
+
+public class Solution {
+/**
+* @param candidates: A list of integers
+* @param target:An integer
+* @return: A list of lists of integers
+*/
+public List<List<Integer>> combinationSum(int[] candidates,
+int target) {
+// write your code here
+List<List<Integer>> rst = new ArrayList<List<Integer>>()
+;
+if(candidates == null || candidates.length == 0) return
+rst;
+dfs(rst, new ArrayList<Integer>(), candidates, target, 0
+, 0);
+return rst;
+}
+private void dfs(List<List<Integer>> rst, List<Integer> list
+, int[] candidates,
+int target, int curSum, int index){
+if(curSum > target) return;
+if(curSum == target){
+List<Integer> newList = new ArrayList<Integer>(list)
+;
+Collections.sort(newList);
+rst.add(newList);
+return;
+}
+for(int i = index; i < candidates.length; i++){
+list.add(candidates[i]);
+curSum += candidates[i];
+dfs(rst, list, candidates, target, curSum, i);
+curSum -= candidates[i];
+list.remove(list.size() - 1);
+}
+}
+}

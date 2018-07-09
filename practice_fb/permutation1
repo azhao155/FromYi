@@ -1,0 +1,32 @@
+class Solution {
+/**
+* @param nums: A list of integers.
+* @return: A list of permutations.
+*/
+public ArrayList<ArrayList<Integer>> permute(ArrayList<Integ
+er> nums) {
+// write your code here
+ArrayList<ArrayList<Integer>> rst = new ArrayList<ArrayL
+ist<Integer>>();
+if(nums == null || nums.size() == 0) return rst;
+boolean[] used = new boolean[nums.size()];
+dfs(rst, new ArrayList<Integer>(), nums, used);
+return rst;
+}
+private void dfs(ArrayList<ArrayList<Integer>> rst, List<Int
+eger> list,
+ArrayList<Integer> nums, boolean[] used){
+if(list.size() == nums.size()){
+rst.add(new ArrayList<Integer>(list));
+return;
+}
+for(int i = 0; i < nums.size(); i++){
+if(used[i]) continue;
+list.add(nums.get(i));
+used[i] = true;
+dfs(rst, list, nums, used);
+used[i] = false;
+list.remove(list.size() - 1);
+}
+}
+}
