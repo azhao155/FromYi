@@ -1,0 +1,11 @@
+学习提高的方法很多，每天坚持看技术网站，技术文章，开源代码/项目。
+- github上搜你的语言star比较多的项目，选个感兴趣又不是太大的读代码
+- 业余时间自己做些自己感兴趣的项目
+- 重构自己的代码，从oop思想，编程风格，可测试性来思考你的设计 （我觉得再简单的项目，这三点也足够你好好琢磨了
+https://github.com/checkcheckzz/system-design-interview#intro
+how to read code: http://blog.jobbole.com/110149/
+继续训练，并编写代码。参与小型开源项目。
+阅读标准书(here是杰夫的名单)
+通过阅读网站www.badprogramming.com
+了解自己的错误，或从别人的错误中获益更多
+除了选择一个有趣的项目并从头开始实施它，阅读别人的代码也可以提高你的技能。 Scott Hanselman在阅读代码Weekly Source Code上有很好的系列
