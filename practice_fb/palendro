@@ -1,0 +1,29 @@
+public class Solution {
+public List<List<String>> partition(String s) {
+List<List<String>> rst = new ArrayList<List<String>>();
+boolean[][] dp = new boolean[s.length()][s.length()];
+for(int i = 0; i < s.length(); i++){
+for(int j = 0; j <= i; j++){
+if(s.charAt(i) == s.charAt(j) && (i - j <= 2 ||
+dp[i - 1][j + 1]))
+dp[i][j] = dp[j][i] = true;
+}
+}
+dfs(rst, new ArrayList<String>(), s, 0, dp);
+return rst;
+}
+private void dfs(List<List<String>> rst, List<String> list,
+String s, int index, boolean[][] dp){
+if(index == s.length()){
+rst.add(new ArrayList<String>(list));
+return;
+}
+for(int i = index; i < s.length(); i++){
+if(!dp[i][index]) continue;
+String substr = s.substring(index, i + 1);
+list.add(substr);
+dfs(rst, list, s, i + 1, dp);
+list.remove(list.size() - 1);
+}
+}
+}

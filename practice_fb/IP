@@ -1,0 +1,24 @@
+private void dfs(List<String> list, StringBuilder sb,
+String s, int ipIndex, int strIndex){
+if(ipIndex > 4) return;
+if(ipIndex == 4 && strIndex == s.length()){
+sb.setLength(sb.length() - 1);
+list.add(sb.toString());
+return;
+}
+int length = sb.length();
+// Add one digit number
+for(int i = 0; i < 3; i++){
+if(strIndex + i < s.length()){
+String substr = s.substring(strIndex, strIndex +
+1 + i);
+if(isValid(substr)){
+sb.append(substr);
+sb.append('.');
+dfs(list, sb, s, ipIndex + 1, strIndex + 1 +
+i);
+sb.setLength(length);
+}
+}
+}
+}

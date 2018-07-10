@@ -1,0 +1,23 @@
+public class Solution {
+public List<String> letterCombinations(String digits) {
+List<String> list = new ArrayList<String>();
+if(digits == null || digits.length() == 0) return list;
+dfs(list, new StringBuilder(), digits, 0);
+return list;
+}
+private void dfs(List<String> list, StringBuilder sb, String
+digits, int pos){
+if(sb.length() == digits.length()){
+list.add(sb.toString());
+return;
+}
+for(int i = pos; i < digits.length(); i++){
+String str = getAlphabets(digits.charAt(i));
+for(int j = 0; j < str.length(); j++){
+int length = sb.length();
+sb.append(str.charAt(j));
+dfs(list, sb, digits, i + 1);
+sb.setLength(length);
+}
+}
+}

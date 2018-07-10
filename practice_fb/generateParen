@@ -1,0 +1,25 @@
+public class Solution {
+public List<String> generateParenthesis(int n) {
+List<String> list = new ArrayList<String>();
+dfs(list, new StringBuilder(), n, n);
+return list;
+}
+private void dfs(List<String> list, StringBuilder sb, int le
+ft, int right){
+if(left == 0 && right == 0){
+list.add(sb.toString());
+return;
+}
+int length = sb.length();
+if(left > 0){
+sb.append('(');
+dfs(list, sb, left - 1, right);
+sb.setLength(length);
+}
+if(right > left){
+sb.append(')');
+dfs(list, sb, left, right - 1);
+sb.setLength(length);
+}
+}
+}

@@ -1,0 +1,54 @@
+public class Solution {
+public int combinationSum4(int[] nums, int target) {
+return dfs(nums, 0, target, new HashMap<Integer, Integer
+>());
+}
+private int dfs(int[] nums, int curSum, int target, HashMap<
+Integer, Integer> map){
+if(curSum > target) return 0;
+if(curSum == target) return 1;
+if(map.containsKey(curSum)) return map.get(curSum);
+int count = 0;
+for(int i = 0; i < nums.length; i++){
+count += dfs(nums, curSum + nums[i], target, map);
+}
+map.put(curSum, count);
+return count;
+}
+}
+
+
+dp:
+public class Solution {
+public int combinationSum4(int[] nums, int target) {
+Arrays.sort(nums);
+int[] res = new int[target + 1];
+for (int i = 1; i < res.length; i++) {
+for (int num : nums) {
+if (num > i)
+break;
+else if (num == i)
+res[i] += 1;
+else
+res[i] += res[i-num];
+}
+}
+return res[target];
+}
+}
+
+
+public class Solution {
+public int combinationSum4(int[] nums, int target) {
+// dp[sum] = number of ways to get sum
+int[] dp = new int[target + 1];
+// initialize, one way to get 0 sum with 0 coins
+dp[0] = 1;
+for(int j = 1; j <= target; j++){
+for(int i = 0; i < nums.length; i++){
+if(j - nums[i] >= 0) dp[j] += dp[j - nums[i]];
+}
+}
+return dp[target];
+}
+}

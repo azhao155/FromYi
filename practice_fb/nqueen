@@ -1,0 +1,27 @@
+public class Solution {
+public int totalNQueens(int n) {
+return dfs(0, n, new boolean[n], new boolean[2*n - 1], n
+ew boolean[2*n - 1]);
+}
+private int dfs(int row, int n, boolean[] cols, boolean[] di
+ag45, boolean[] diag135){
+if(row == n){
+return 1;
+}
+int solutionCount = 0;
+for(int col = 0; col < n; col++){
+if(!cols[col] && !diag45[row + col] && !diag135[row
+- col + n - 1]){
+cols[col] = true;
+diag45[row + col] = true;
+diag135[row - col + n - 1] = true;
+solutionCount += dfs(row + 1, n, cols, diag45, d
+iag135);
+cols[col] = false;
+diag45[row + col] = false;
+diag135[row - col + n - 1] = false;
+}
+}
+return solutionCount;
+}
+}
